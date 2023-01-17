@@ -15,8 +15,25 @@ class MyWidget extends StatelessWidget {
       title: "Receitas",
       theme: tema.copyWith(
         colorScheme: tema.colorScheme.copyWith(
-          primary: Colors.blue,
-          // secondary: Colors.amber,
+          primary: Colors.pink,
+          secondary: Colors.amber,
+        ),
+        canvasColor: const Color.fromRGBO(255, 254, 229, 1),
+         appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'Raleway',
+            fontSize: 20,
+            // fontWeight: FontWeight.bold,
+            color: Colors.white,
+          ),
+        ),
+        textTheme: tema.textTheme.copyWith(
+          headline6: const TextStyle(
+            fontFamily: 'RobotoCondensed',
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        
         ),
       ),
       home: Scaffold(
