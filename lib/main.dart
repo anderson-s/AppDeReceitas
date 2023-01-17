@@ -1,4 +1,4 @@
-import 'package:app_receitas/home.dart';
+import 'package:app_receitas/views/categories_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +19,13 @@ class MyWidget extends StatelessWidget {
           // secondary: Colors.amber,
         ),
       ),
-      home: const Home(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Vamos Cozinhar?"),
+          centerTitle: true,
+        ),
+        body: const CategoriesScreen(),
+      ),
       debugShowCheckedModeBanner: false,
     );
   }
