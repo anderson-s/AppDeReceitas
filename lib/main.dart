@@ -26,7 +26,6 @@ class MyWidget extends StatelessWidget {
           titleTextStyle: TextStyle(
             fontFamily: 'Raleway',
             fontSize: 20,
-            // fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
         ),
