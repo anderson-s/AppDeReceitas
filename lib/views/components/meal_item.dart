@@ -8,7 +8,9 @@ class MealItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.pushNamed(context, "/meal-detail", arguments: meal);
+      },
       child: Card(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -72,7 +74,7 @@ class MealItem extends StatelessWidget {
                         Text(meal.retornarComplexidade)
                       ],
                     ),
-                       Row(
+                    Row(
                       children: [
                         const Icon(Icons.attach_money),
                         const SizedBox(width: 6),
