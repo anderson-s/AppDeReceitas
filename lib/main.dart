@@ -42,7 +42,14 @@ class MyWidget extends StatelessWidget {
       routes: {
         Routes.home: (context) => const CategoriesScreen(),
         Routes.categoriesMeals: (context) => const CategoriesMealsScreen(),
-        Routes.mealDetail:(context) => const MealDetail(),
+        Routes.mealDetail: (context) => const MealDetail(),
+      },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (_) {
+            return const CategoriesScreen();
+          },
+        );
       },
     );
   }
