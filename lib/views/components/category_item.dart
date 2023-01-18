@@ -1,5 +1,5 @@
 import 'package:app_receitas/models/category.dart';
-import 'package:app_receitas/views/categories_meals_screen.dart';
+// import 'package:app_receitas/views/categories_meals_screen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
@@ -12,14 +12,7 @@ class CategoryItem extends StatelessWidget {
       borderRadius: BorderRadius.circular(15),
       splashColor: Theme.of(context).colorScheme.primary,
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => CategoriesMealsScreen(
-              category: category,
-            ),
-          ),
-        );
+        Navigator.pushNamed(context, "/categories-meals", arguments: category);
       },
       child: Container(
         padding: const EdgeInsets.all(15),
