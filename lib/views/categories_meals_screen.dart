@@ -15,14 +15,16 @@ class CategoriesMealsScreen extends StatelessWidget {
         .where((element) => element.categories.contains(category.id))
         .toList();
     return Scaffold(
-        appBar: AppBar(
-          title: Text(category.title),
-        ),
-        body: ListView.builder(
-          itemBuilder: (context, index) {
-            return MealItem(meal: categoryMeals[index]);
-          },
-          itemCount: categoryMeals.length,
-        ));
+      appBar: AppBar(
+        title: Text(category.title),
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+        itemBuilder: (context, index) {
+          return MealItem(meal: categoryMeals[index]);
+        },
+        itemCount: categoryMeals.length,
+      ),
+    );
   }
 }
