@@ -2,6 +2,7 @@ import 'package:app_receitas/models/utils/routes.dart';
 import 'package:app_receitas/views/categories_meals_screen.dart';
 import 'package:app_receitas/views/categories_screen.dart';
 import 'package:app_receitas/views/meal_detail.dart';
+import 'package:app_receitas/views/tabs.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -39,7 +40,7 @@ class MyWidget extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        Routes.home: (context) => const CategoriesScreen(),
+        Routes.home: (context) => const Tabs(),
         Routes.categoriesMeals: (context) => const CategoriesMealsScreen(),
         Routes.mealDetail: (context) => const MealDetail(),
       },
