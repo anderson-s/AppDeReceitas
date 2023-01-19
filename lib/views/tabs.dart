@@ -1,4 +1,5 @@
 import 'package:app_receitas/views/categories_screen.dart';
+import 'package:app_receitas/views/components/main_drawer.dart';
 import 'package:app_receitas/views/meals_favorite.dart';
 import 'package:flutter/material.dart';
 
@@ -32,6 +33,7 @@ class _TabsState extends State<Tabs> {
           centerTitle: true,
         ),
         body: pages[index]["page"] as Widget,
+        drawer: const MainDrawer(),
         bottomNavigationBar: BottomNavigationBar(
           // backgroundColor: Theme.of(context).colorScheme.primary,
           unselectedItemColor: Colors.white,
@@ -50,7 +52,7 @@ class _TabsState extends State<Tabs> {
             BottomNavigationBarItem(
               backgroundColor: Theme.of(context).colorScheme.primary,
               icon: const Icon(
-                Icons.start,
+                Icons.star,
               ),
               label: "Favoritos",
             )

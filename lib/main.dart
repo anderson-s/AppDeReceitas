@@ -2,6 +2,7 @@ import 'package:app_receitas/models/utils/routes.dart';
 import 'package:app_receitas/views/categories_meals_screen.dart';
 import 'package:app_receitas/views/categories_screen.dart';
 import 'package:app_receitas/views/meal_detail.dart';
+import 'package:app_receitas/views/settings.dart';
 import 'package:app_receitas/views/tabs.dart';
 import 'package:flutter/material.dart';
 
@@ -43,6 +44,7 @@ class MyWidget extends StatelessWidget {
         Routes.home: (context) => const Tabs(),
         Routes.categoriesMeals: (context) => const CategoriesMealsScreen(),
         Routes.mealDetail: (context) => const MealDetail(),
+        Routes.settings: (context) => const Settings(),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
