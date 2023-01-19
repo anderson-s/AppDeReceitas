@@ -1,3 +1,6 @@
+import 'package:app_receitas/models/dummy_data.dart';
+import 'package:app_receitas/models/filters.dart';
+import 'package:app_receitas/models/meal.dart';
 import 'package:app_receitas/models/utils/routes.dart';
 import 'package:app_receitas/views/categories_meals_screen.dart';
 import 'package:app_receitas/views/categories_screen.dart';
@@ -18,6 +21,26 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  List<Meal> comidasDisponiveis = dummyMeals;
+
+  void filtrarComidas(Filtres filtros) {
+    setState(() {
+      comidasDisponiveis = dummyMeals.where(
+        (element) {
+          final filtroGluten = filtros.isGlutenFree && !element.isGlutenFree;
+          final filtroLactose = filtros.isLactoseFree && !element.isLactoseFree;
+          final filtroVegan = filtros.isVegan && !element.isVegan;
+          final filtroVegetarian =
+              filtros.isVegetarian && !element.isVegetarian;
+          return !filtroGluten &&
+              !filtroLactose &&
+              !filtroVegan &&
+              !filtroVegetarian;
+        },
+      ).toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final tema = ThemeData();
@@ -47,9 +70,10 @@ class _MyWidgetState extends State<MyWidget> {
       debugShowCheckedModeBanner: false,
       routes: {
         Routes.home: (context) => const Tabs(),
-        Routes.categoriesMeals: (context) => const CategoriesMealsScreen(),
+        Routes.categoriesMeals: (context) =>
+            CategoriesMealsScreen(meals: comidasDisponiveis),
         Routes.mealDetail: (context) => const MealDetail(),
-        Routes.settings: (context) => const Settings(),
+        Routes.settings: (context) => Settings(filtros: filtrarComidas),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(

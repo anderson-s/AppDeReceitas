@@ -3,24 +3,28 @@ import 'package:app_receitas/views/components/main_drawer.dart';
 import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
-  const Settings({super.key});
+  final Function(Filtres) filtros;
+  const Settings({super.key, required this.filtros});
 
   @override
   State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
+  var filtros = Filtres();
+
   Widget _criarSwitch(
       String title, String subitile, bool value, Function(bool) onChanged) {
     return SwitchListTile(
       value: value,
-      onChanged: onChanged,
+      onChanged: (value) {
+        onChanged(value);
+        widget.filtros(filtros);
+      },
       title: Text(title),
       subtitle: Text(subitile),
     );
   }
-
-  var filtros = Filtres();
 
   @override
   Widget build(BuildContext context) {
