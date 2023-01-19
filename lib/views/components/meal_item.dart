@@ -9,7 +9,14 @@ class MealItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, "/meal-detail", arguments: meal);
+        Navigator.pushNamed(context, "/meal-detail", arguments: meal)
+            .then((value) {
+          if (value == null) {
+            print("vazio!");
+          } else {
+            print("O valor é ${value}");
+          }
+        });
       },
       child: Card(
           shape:
