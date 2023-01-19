@@ -4,14 +4,15 @@ import 'package:flutter/material.dart';
 
 class Settings extends StatefulWidget {
   final Function(Filtres) filtros;
-  const Settings({super.key, required this.filtros});
+  final Filtres estados;
+  const Settings({super.key, required this.filtros, required this.estados});
 
   @override
   State<Settings> createState() => _SettingsState();
 }
 
 class _SettingsState extends State<Settings> {
-  var filtros = Filtres();
+  Filtres filtros = Filtres();
 
   Widget _criarSwitch(
       String title, String subitile, bool value, Function(bool) onChanged) {
@@ -24,6 +25,12 @@ class _SettingsState extends State<Settings> {
       title: Text(title),
       subtitle: Text(subitile),
     );
+  }
+
+  @override
+  void initState() {
+    filtros = widget.estados;
+    super.initState();
   }
 
   @override

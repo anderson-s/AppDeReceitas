@@ -21,10 +21,12 @@ class MyWidget extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<MyWidget> {
+  Filtres estados = Filtres();
   List<Meal> comidasDisponiveis = dummyMeals;
 
   void filtrarComidas(Filtres filtros) {
     setState(() {
+      estados = filtros;
       comidasDisponiveis = dummyMeals.where(
         (element) {
           final filtroGluten = filtros.isGlutenFree && !element.isGlutenFree;
@@ -73,7 +75,7 @@ class _MyWidgetState extends State<MyWidget> {
         Routes.categoriesMeals: (context) =>
             CategoriesMealsScreen(meals: comidasDisponiveis),
         Routes.mealDetail: (context) => const MealDetail(),
-        Routes.settings: (context) => Settings(filtros: filtrarComidas),
+        Routes.settings: (context) => Settings(filtros: filtrarComidas, estados: estados,),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(
