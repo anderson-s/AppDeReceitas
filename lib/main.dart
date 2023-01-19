@@ -23,6 +23,7 @@ class MyWidget extends StatefulWidget {
 class _MyWidgetState extends State<MyWidget> {
   Filtres estados = Filtres();
   List<Meal> comidasDisponiveis = dummyMeals;
+  List<Meal> comidasFavoritas = [];
 
   void filtrarComidas(Filtres filtros) {
     setState(() {
@@ -41,6 +42,18 @@ class _MyWidgetState extends State<MyWidget> {
         },
       ).toList();
     });
+  }
+
+  favoritar(Meal refeicao) {
+    setState(() {
+      comidasFavoritas.contains(refeicao)
+          ? comidasFavoritas.remove(refeicao)
+          : comidasFavoritas.add(refeicao);
+    });
+  }
+
+  bool estafavoritado(Meal refeicao) {
+    return comidasFavoritas.contains(refeicao);
   }
 
   @override
@@ -71,11 +84,17 @@ class _MyWidgetState extends State<MyWidget> {
       ),
       debugShowCheckedModeBanner: false,
       routes: {
-        Routes.home: (context) => const Tabs(),
+        Routes.home: (context) => Tabs(
+              comidasFavoritas: comidasFavoritas,
+            ),
         Routes.categoriesMeals: (context) =>
             CategoriesMealsScreen(meals: comidasDisponiveis),
-        Routes.mealDetail: (context) => const MealDetail(),
-        Routes.settings: (context) => Settings(filtros: filtrarComidas, estados: estados,),
+        Routes.mealDetail: (context) => MealDetail(
+              favoritar: favoritar,
+              estaFavoritado: estafavoritado,
+            ),
+        Routes.settings: (context) =>
+            Settings(filtros: filtrarComidas, estados: estados),
       },
       onUnknownRoute: (settings) {
         return MaterialPageRoute(

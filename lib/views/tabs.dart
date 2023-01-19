@@ -1,10 +1,12 @@
+import 'package:app_receitas/models/meal.dart';
 import 'package:app_receitas/views/categories_screen.dart';
 import 'package:app_receitas/views/components/main_drawer.dart';
 import 'package:app_receitas/views/meals_favorite.dart';
 import 'package:flutter/material.dart';
 
 class Tabs extends StatefulWidget {
-  const Tabs({super.key});
+  final List<Meal> comidasFavoritas;
+  const Tabs({super.key, required this.comidasFavoritas});
 
   @override
   State<Tabs> createState() => _TabsState();
@@ -12,15 +14,24 @@ class Tabs extends StatefulWidget {
 
 class _TabsState extends State<Tabs> {
   int index = 0;
-  final pages = [
-    {"title": "Lista de Categorias", "page": const CategoriesScreen()},
-    {"title": "Favoritos", "page": const MealsFavorite()},
-  ];
+  dynamic pages;
 
   _selecionarPagina(int valor) {
     setState(() {
       index = valor;
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    pages = [
+      {"title": "Lista de Categorias", "page": const CategoriesScreen()},
+      {
+        "title": "Favoritos",
+        "page": MealsFavorite(comidasFavoritas: widget.comidasFavoritas)
+      },
+    ];
   }
 
   @override

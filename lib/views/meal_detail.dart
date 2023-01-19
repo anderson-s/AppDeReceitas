@@ -1,11 +1,17 @@
-import 'dart:html';
-
 import 'package:app_receitas/models/meal.dart';
 import 'package:flutter/material.dart';
 
-class MealDetail extends StatelessWidget {
-  const MealDetail({super.key});
+class MealDetail extends StatefulWidget {
+  final Function(Meal) favoritar;
+  final bool Function(Meal) estaFavoritado;
+  const MealDetail(
+      {super.key, required this.favoritar, required this.estaFavoritado});
 
+  @override
+  State<MealDetail> createState() => _MealDetailState();
+}
+
+class _MealDetailState extends State<MealDetail> {
   Widget criarSecao(BuildContext context, String title) {
     return Container(
       margin: const EdgeInsets.symmetric(
@@ -97,9 +103,12 @@ class MealDetail extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pop(meal.title);
+          widget.favoritar(meal);
+          // Navigator.of(context).pop(meal.title);
         },
-        child: const Icon(Icons.star),
+        child: Icon(
+          widget.estaFavoritado(meal) ? Icons.star : Icons.star_border,
+        ),
       ),
     );
   }
